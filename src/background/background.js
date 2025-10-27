@@ -1,11 +1,16 @@
-import browser from "webextension-polyfill";
+/**
+ * @file background.js 后台脚本，通常用于监听浏览器事件、处理插件核心逻辑，可调用全部Chrome API，生命周期与浏览器一致
+ * @description: 注意：background 脚本无法直接操作页面 DOM，如需操作页面 DOM，请使用 content 脚本。
+ */
+
 import log from "loglevel";
-import {initSettings, handleSettingsChange} from "src/settings/settings";
-import {updateLogLevel, overWriteLogLevel} from "src/common/log";
-import onInstalledListener from "./onInstalledListener";
-import {showMenus, onMenusShownListener, onMenusClickedListener} from "./menus";
-import {onCommandListener} from "./keyboardShortcuts";
+import browser from "webextension-polyfill";
 import onMessageListener from "./onMessageListener";
+import {onCommandListener} from "./keyboardShortcuts";
+import onInstalledListener from "./onInstalledListener";
+import {updateLogLevel, overWriteLogLevel} from "src/common/log";
+import {initSettings, handleSettingsChange} from "src/settings/settings";
+import {showMenus, onMenusShownListener, onMenusClickedListener} from "./menus";
 
 const logDir = "background/background";
 

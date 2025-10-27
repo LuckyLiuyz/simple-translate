@@ -1,6 +1,11 @@
-import browser from "webextension-polyfill";
-import browserInfo from "browser-info";
+/**
+ * @file src/background/menus.js 后台脚本 - 菜单相关
+ * @description: Background 自定义右键菜单按钮
+ */
+
 import log from "loglevel";
+import browserInfo from "browser-info";
+import browser from "webextension-polyfill";
 import {getSettings} from "src/settings/settings";
 
 const logDir = "background/menus";

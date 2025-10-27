@@ -1,14 +1,19 @@
+/**
+ * @file src/content/index.js 内容脚本入口
+ * @description 内容脚本，注入到网页中运行，可直接访问和修改页面DOM，与网页内容交互
+ */
+
 import React from "react";
 import ReactDOM from "react-dom";
 import browser from "webextension-polyfill";
+import PageTranslator from "../popup/components/PageTranslator";
+import {updateLogLevel, overWriteLogLevel} from "src/common/log";
+import TranslateContainer from "./components/TranslateContainer";
 import {
 	initSettings,
 	getSettings,
 	handleSettingsChange,
 } from "src/settings/settings";
-import {updateLogLevel, overWriteLogLevel} from "src/common/log";
-import TranslateContainer from "./components/TranslateContainer";
-import PageTranslator from "../popup/components/PageTranslator";
 const init = async () => {
 	await initSettings();
 	document.addEventListener("mouseup", handleMouseUp);

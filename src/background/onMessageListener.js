@@ -1,6 +1,6 @@
 import browser from "webextension-polyfill";
-import {initSettings} from "src/settings/settings";
 import translate from "src/common/translate";
+import {initSettings} from "src/settings/settings";
 
 export default async (data) => {
 	await initSettings();

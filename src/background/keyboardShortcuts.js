@@ -1,11 +1,11 @@
-import browser from "webextension-polyfill";
-import browserInfo from "browser-info";
 import log from "loglevel";
-import {getSettings, setSettings} from "src/settings/settings";
-import getShortcut from "src/common/getShortcut";
-import manifest from "src/manifest-chrome.json";
+import browserInfo from "browser-info";
 import openUrl from "../common/openUrl";
+import browser from "webextension-polyfill";
+import manifest from "src/manifest-chrome.json";
+import getShortcut from "src/common/getShortcut";
 import {initSettings} from "../settings/settings";
+import {getSettings, setSettings} from "src/settings/settings";
 
 const logDir = "background/keyboardShortcuts";
 

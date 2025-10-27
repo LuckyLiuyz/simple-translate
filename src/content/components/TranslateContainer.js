@@ -17,7 +17,7 @@ export const translateText = async (
 	if (isOpenCustomMode) {
 		if (text === "葡萄城AI搜索") {
 			result = {
-				resultText: "修正词条：Grape City AI Search For YonYou Search",
+				resultText: "自定义修正词条：Grape City AI Search For YonYou Search",
 				candidateText: "",
 				sourceLanguage: "zh-CN",
 				percentage: 1,

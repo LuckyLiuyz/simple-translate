@@ -1,5 +1,10 @@
-import browser from "webextension-polyfill";
+/**
+ * @file 翻译相关功能
+ * @description 包含调用翻译 API 及缓存翻译结果等功能。
+ */
+
 import log from "loglevel";
+import browser from "webextension-polyfill";
 import {getSettings} from "src/settings/settings";
 
 const logDir = "common/translate";

@@ -1,7 +1,7 @@
-import browser from "webextension-polyfill";
 import log from "loglevel";
-import {initSettings, getSettings, setSettings} from "src/settings/settings";
+import browser from "webextension-polyfill";
 import {initShortcuts} from "./keyboardShortcuts";
+import {initSettings, getSettings, setSettings} from "src/settings/settings";
 import {
 	RESULT_FONT_COLOR_LIGHT,
 	RESULT_FONT_COLOR_DARK,

@@ -1,5 +1,10 @@
-import browser from "webextension-polyfill";
+/**
+ * @file src/settings/settings.js options配置界面封装的相关函数
+ * @description 用于获取和设置插件的配置选项，并保存到浏览器的本地存储中。
+ */
+
 import log from "loglevel";
+import browser from "webextension-polyfill";
 import defaultSettings from "./defaultSettings";
 
 const logDir = "settings/settings";
