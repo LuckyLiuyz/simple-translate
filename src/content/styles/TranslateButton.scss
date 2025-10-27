@@ -15,7 +15,7 @@
 
     transition-property: opacity, visibility;
     transition-duration: 200ms;
-    opacity: 0;
+    opacity: 0; 
     visibility: hidden;
     &.isShow {
       opacity: 1;

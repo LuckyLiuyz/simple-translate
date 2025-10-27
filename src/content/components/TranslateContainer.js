@@ -5,7 +5,10 @@ import TranslateButton from "./TranslateButton";
 import TranslatePanel from "./TranslatePanel";
 import "../styles/TranslateContainer.scss";
 
-const translateText = async (text, targetLang = getSettings("targetLang")) => {
+export const translateText = async (
+	text,
+	targetLang = getSettings("targetLang")
+) => {
 	console.log("translateText()", text, targetLang);
 	let result = {};
 	if (text === "葡萄城AI搜索") {
