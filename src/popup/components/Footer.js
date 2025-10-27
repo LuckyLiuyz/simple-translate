@@ -11,10 +11,19 @@ export default class Footer extends Component {
 
 	handleLinkClick = async () => {
 		const {tabUrl, targetLang} = this.props;
-		const encodedUrl = encodeURIComponent(tabUrl);
-		const translateUrl = `https://translate.google.com/translate?hl=${targetLang}&tl=${targetLang}&sl=auto&u=${encodedUrl}`;
-		const isCurrentTab = getSettings("pageTranslationOpenTo") === "currentTab";
-		openUrl(translateUrl, isCurrentTab);
+
+		// 向内容脚本发送消息，请求翻译整个页面
+		const tabs = await browser.tabs.query({active: true, currentWindow: true});
+		const activeTab = tabs[0];
+
+		try {
+			// 尝试向内容脚本发送翻译页面的消息
+			await browser.tabs.sendMessage(activeTab.id, {
+				message: "translatePageDemo",
+			});
+		} catch (error) {
+			console.error("Error sending message to content script:", error);
+		}
 	};
 
 	handleChange = (e) => {
@@ -30,7 +39,8 @@ export default class Footer extends Component {
 				<div className='translateLink'>
 					{tabUrl && (
 						<a onClick={this.handleLinkClick}>
-							{browser.i18n.getMessage("showLink")}
+							{/* {browser.i18n.getMessage("showLink")} */}
+							翻译当前页面
 						</a>
 					)}
 				</div>

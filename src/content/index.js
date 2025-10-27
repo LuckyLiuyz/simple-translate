@@ -8,7 +8,7 @@ import {
 } from "src/settings/settings";
 import {updateLogLevel, overWriteLogLevel} from "src/common/log";
 import TranslateContainer from "./components/TranslateContainer";
-
+import PageTranslator from "../popup/components/PageTranslator";
 const init = async () => {
 	await initSettings();
 	document.addEventListener("mouseup", handleMouseUp);
@@ -154,6 +154,8 @@ const handleVisibilityChange = () => {
 	}
 };
 
+let pageTranslator = null;
+
 let isEnabled = true;
 const handleMessage = async (request) => {
 	const empty = new Promise((resolve) => {
@@ -178,6 +180,31 @@ const handleMessage = async (request) => {
 			const selectedPosition = getSelectedPosition();
 			removeTranslatecontainer();
 			showTranslateContainer(selectedText, selectedPosition, null, true);
+			break;
+		}
+		case "translatePageDemo": {
+			alert("页面翻译示例功能正在开发中，敬请期待！");
+			debugger;
+			// 处理translatePageDmeo消息
+			console.log("Received translatePageDemo message");
+
+			// 创建PageTranslator实例
+			if (!pageTranslator) {
+				pageTranslator = new PageTranslator({
+					targetLanguage: getSettings("targetLang") || "en",
+				});
+			}
+
+			// 执行页面翻译
+			pageTranslator
+				.init()
+				.then(() => {
+					console.log("Page translation demo completed");
+				})
+				.catch((error) => {
+					console.error("Page translation demo failed:", error);
+				});
+
 			break;
 		}
 		case "getEnabled":

@@ -21,6 +21,7 @@ export default class PageTranslator {
 	init() {
 		// 移除了调试代码
 		// this.setupMutationObserver();
+		debugger;
 		return this.translatePage();
 	}
 
@@ -97,6 +98,7 @@ export default class PageTranslator {
 		// 收集属性文本
 		this.collectAttributeTexts(root).forEach((attr) => elements.push(attr));
 		// 移除了调试用的 alert
+		console.log("collectTranslatableElements()", elements);
 		return elements;
 	}
 
@@ -128,6 +130,7 @@ export default class PageTranslator {
 			});
 		}
 
+		console.log("collectAttributeTexts()", attributes);
 		return attributes;
 	}
 
