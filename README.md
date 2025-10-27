@@ -1,56 +1,34 @@
-# <sub><img src="/src/icons/64.png" width=64px height=64px></sub> Simple Translate
+# Simple Translate 浏览器翻译插件
 
-#### Quickly translate selected or typed text on web pages. Supports Google Translate and DeepL API.
+#### 快速翻译网页上选定或键入的文本。支持谷歌翻译和 DeepL API。
 
-[<img src="other/promotion/badges/firefox.png" align="left" alt="for Firefox">](https://addons.mozilla.org/firefox/addon/simple-translate/)
+项目克隆至：https://github.com/sienori/simple-translate。
 
-[<img src="other/promotion/badges/chrome.png" alt="for Chrome" height="60px">](https://chrome.google.com/webstore/detail/simple-translate/ibplnjkanclpjokhdolnendpplpjiace)
+## 开发
 
-[for Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/cllnohpbfenopiakdcjmjcbaeapmkcdl)
+> 版本要求： Node 18.17.1
 
-## Backers
+1. git clone https://github.com/LuckyLiuyz/simple-translate.git -- 克隆项目
+2. Run `npm install` -- 安装依赖
+3. Run `npm run watch-dev` -- 启动开发环境
+4. Run `npm run build` -- 构建打包插件，产物可以在浏览器开发者模式下调试。
 
-Thank you to the awesome **[backers](https://github.com/sienori/simple-translate/blob/master/BACKERS.md)** who supported Simple Translate!
+### 在 Chrome 中加载扩展程序
 
-[<img src="other/promotion/badges/patreon.png" alt="Became a Patreon" height="44px" align="left">](https://www.patreon.com/sienori)
-[<img src="other/promotion/badges/paypal.png" alt="Check out with PayPal">](https://www.paypal.me/sienoriExt)
+1. 打开 Chrome 浏览器并导航至“chrome://extensions”
+2. 选择“开发者模式”，然后单击“加载解压的扩展...”
+3. 从文件浏览器中选择“simple-translate/dev/chrome”
 
-## Sponsors
+### 在 Edge 中加载扩展程序
 
-Support Simple Translate by [becoming a sponsor](https://www.patreon.com/join/sienori). Thank you to our wonderful sponsors!
+1. 打开 Edge 浏览器并导航至“edge://extensions”
+2. 选择“开发者模式”，然后点击“加载解压”
+3. 从文件浏览器中选择“simple-translate/dev/chrome”
 
-[<img src="docs/img/toucan.png" alt="Toucan" height=110px align="left">](https://jointoucan.com/partners/tab-session-manager)
+### 在 Firefox 中加载扩展程序
 
-[<img src="docs/img/becomeSponsor.png" alt="Become a Sponsor" height=110px>](https://www.patreon.com/join/sienori)
-
-## Translation
-
-You can contribute by translating Simple Translate on **[Crowdin](https://crowdin.com/project/simple-translate)**.
-
-## Developing
-
-> Required Node 18.17.1
-
-1. Clone the repository `git clone https://github.com/sienori/simple-translate`
-2. Run `npm install`
-3. Run `npm run watch-dev`
-
-### Load the extension in Chrome
-
-1. Open Chrome browser and navigate to `chrome://extensions`
-2. Select "Developer Mode" and then click "Load unpacked extension..."
-3. From the file browser, choose to `simple-translate/dev/chrome`
-
-### Load the extension in Edge
-
-1. Open Edge browser and navigate to `edge://extensions`
-2. Select "Developer Mode" and then click "Load unpacked"
-3. From the file browser, choose to `simple-translate/dev/chrome`
-
-### Load the extension in Firefox
-
-1. Open Firefox browser and navigate to `about:debugging`
-2. Click "Load Temporary Add-on" and from the file browser, choose `simple-translate/dev/firefox`
+1. 打开 Firefox 浏览器并导航至“about:debugging”
+2. 单击“加载临时插件”，然后从文件浏览器中选择 `simple-translate/dev/firefox`
 
 ## Privacy Policy
 
