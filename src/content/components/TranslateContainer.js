@@ -5,9 +5,10 @@ import TranslateButton from "./TranslateButton";
 import TranslatePanel from "./TranslatePanel";
 import "../styles/TranslateContainer.scss";
 
+// TODO 临时默认目标语言为英文
 export const translateText = async (
 	text,
-	targetLang = getSettings("targetLang")
+	targetLang = "en" || getSettings("targetLang")
 ) => {
 	console.log("translateText()", text, targetLang);
 	let result = {};

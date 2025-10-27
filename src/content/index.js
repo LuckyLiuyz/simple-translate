@@ -183,8 +183,6 @@ const handleMessage = async (request) => {
 			break;
 		}
 		case "translatePageDemo": {
-			alert("页面翻译示例功能正在开发中，敬请期待！");
-			debugger;
 			// 处理translatePageDmeo消息
 			console.log("Received translatePageDemo message");
 
