@@ -12,15 +12,26 @@ export const translateText = async (
 ) => {
 	console.log("translateText()", text, targetLang);
 	let result = {};
-	if (text === "葡萄城AI搜索") {
-		result = {
-			resultText: "修正词条：Grape City AI Search For YonYou Search",
-			candidateText: "",
-			sourceLanguage: "zh-CN",
-			percentage: 1,
-			isError: false,
-			errorMessage: "",
-		};
+	const isOpenCustomMode = getSettings("isOpenCustomMode");
+	// 自定义模式下的翻译, 优先级高于翻译引擎
+	if (isOpenCustomMode) {
+		if (text === "葡萄城AI搜索") {
+			result = {
+				resultText: "修正词条：Grape City AI Search For YonYou Search",
+				candidateText: "",
+				sourceLanguage: "zh-CN",
+				percentage: 1,
+				isError: false,
+				errorMessage: "",
+			};
+		} else {
+			result = await browser.runtime.sendMessage({
+				message: "translate",
+				text: text,
+				sourceLang: "auto",
+				targetLang: targetLang,
+			});
+		}
 	} else {
 		result = await browser.runtime.sendMessage({
 			message: "translate",
