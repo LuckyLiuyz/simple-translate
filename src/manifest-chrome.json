@@ -5,6 +5,7 @@
   "description": "__MSG_extDescription__",
   "default_locale": "en",
   "permissions": [
+    "cookies",
     "storage",
     "contextMenus"
   ],

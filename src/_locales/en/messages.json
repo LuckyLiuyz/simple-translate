@@ -347,6 +347,12 @@
   "isOpenCustomModeCaptionLabel": {
     "message": "启用自定义模式后, 部分中文词条将优先使用自定义的翻译，不会调用谷歌翻译或DeepL翻译。"
   },
+  "isAutoTranslateLabel": {
+    "message": "是否启用自动翻译"
+  },
+  "isAutoTranslateCaptionLabel": {
+    "message": "启用自动翻译后, 插件会自动检测当前语种，自动翻译当前页面。"
+  },
   "exportSettingsLabel": {
     "message": "Export settings"
   },

@@ -21,7 +21,6 @@ export default class PageTranslator {
 	init() {
 		// 移除了调试代码
 		// this.setupMutationObserver();
-		debugger;
 		return this.translatePage();
 	}
 

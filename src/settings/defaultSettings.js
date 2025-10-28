@@ -588,6 +588,13 @@ export default [
 				type: "checkbox",
 				default: false,
 			},
+			{
+				id: "isAutoTranslate",
+				title: "isAutoTranslateLabel",
+				captions: ["isAutoTranslateCaptionLabel"],
+				type: "checkbox",
+				default: false,
+			},
 		],
 	},
 ];

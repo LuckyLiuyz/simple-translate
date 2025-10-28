@@ -14,6 +14,8 @@ import {
 	getSettings,
 	handleSettingsChange,
 } from "src/settings/settings";
+
+let pageTranslator = null;
 const init = async () => {
 	await initSettings();
 	document.addEventListener("mouseup", handleMouseUp);
@@ -24,8 +26,44 @@ const init = async () => {
 	overWriteLogLevel();
 	updateLogLevel();
 	disableExtensionByUrlList();
+
+	// 检查是否需要自动翻译页面
+	checkAutoTranslate();
 };
 init();
+
+// 检查是否需要自动翻译页面
+const checkAutoTranslate = async () => {
+	// 检测是否启用自动翻译
+	const isAutoTranslate = getSettings("isAutoTranslate");
+	if (!isAutoTranslate) return;
+	// 获取浏览器语言
+	const language = navigator.language || navigator.userLanguage;
+	console.log("Language:", language);
+	// 如果语言是中文（简体），则自动翻译页面
+	if (language === "zh-CN") {
+		// 延迟一点执行，确保页面加载完成
+		setTimeout(() => {
+			translateCurrentPage();
+		}, 1000);
+	}
+};
+
+// 翻译当前页面
+const translateCurrentPage = async () => {
+	try {
+		// 创建PageTranslator实例
+		pageTranslator = new PageTranslator({
+			targetLanguage: getSettings("targetLang") || "en",
+		});
+
+		// 执行页面翻译
+		await pageTranslator.init();
+		console.log("Page auto-translated successfully");
+	} catch (error) {
+		console.error("Page auto-translation failed:", error);
+	}
+};
 
 let prevSelectedText = "";
 const handleMouseUp = async (e) => {
@@ -158,8 +196,6 @@ const handleVisibilityChange = () => {
 		browser.storage.local.onChanged.addListener(handleSettingsChange);
 	}
 };
-
-let pageTranslator = null;
 
 let isEnabled = true;
 const handleMessage = async (request) => {
