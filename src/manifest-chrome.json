@@ -7,7 +7,12 @@
   "permissions": [
     "cookies",
     "storage",
-    "contextMenus"
+    "contextMenus",
+    "activeTab",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
   ],
   "options_ui": {
     "page": "options/index.html",

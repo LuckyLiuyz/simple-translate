@@ -23,6 +23,7 @@ let pageTranslator = null;
  * 包括鼠标按键、键盘按键、页面可见性变化等事件监听器
  */
 const init = async () => {
+	console.log("Content script init()");
 	// 初始化设置
 	await initSettings();
 

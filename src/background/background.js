@@ -1,5 +1,5 @@
 /**
- * @file background.js 后台脚本，通常用于监听浏览器事件、处理插件核心逻辑，可调用全部Chrome API，生命周期与浏览器一致
+ * @file index.js 后台脚本，通常用于监听浏览器事件、处理插件核心逻辑，可调用全部Chrome API，生命周期与浏览器一致
  * @description: 注意：background 脚本无法直接操作页面 DOM，如需操作页面 DOM，请使用 content 脚本。
  */
 
@@ -48,6 +48,7 @@ browser.contextMenus.onClicked.addListener(onMenusClickedListener);
 
 // 插件初始化异步函数
 const init = async () => {
+	console.log("background init()");
 	// 等待设置初始化完成
 	await initSettings();
 	// 覆盖日志级别设置

@@ -69,31 +69,31 @@ function createMenus() {
 		browserInfo().name === "Firefox" && browserInfo().version >= 53;
 	if (isValidContextsTypeTab) {
 		browser.contextMenus.create({
-			id: "translatePageOnTab",
-			title: browser.i18n.getMessage("translatePageMenu"),
+			id: "translatePageOnTab", // 该 id 在onMenusClickedListener方法中使用
+			title: browser.i18n.getMessage("translatePageMenu"), // 翻译此页面
 			contexts: ["tab"],
 		});
 	}
 
 	// 创建页面翻译菜单项，在所有上下文中显示
 	browser.contextMenus.create({
-		id: "translatePage",
-		title: browser.i18n.getMessage("translatePageMenu"),
+		id: "translatePage", // 该 id 在onMenusClickedListener方法中使用
+		title: browser.i18n.getMessage("translatePageMenu"), // 翻译此页面
 		contexts: ["all"],
 		visible: true,
 	});
 
 	// 创建文本翻译菜单项，仅在选择文本时显示
 	browser.contextMenus.create({
-		id: "translateText",
-		title: browser.i18n.getMessage("translateTextMenu"),
+		id: "translateText", // 该 id 在onMenusClickedListener方法中使用
+		title: browser.i18n.getMessage("translateTextMenu"), // 翻译选中的文本
 		contexts: ["selection"],
 	});
 
 	// 创建链接翻译菜单项，仅在链接上下文中显示
 	browser.contextMenus.create({
-		id: "translateLink",
-		title: browser.i18n.getMessage("translateLinkMenu"),
+		id: "translateLink", // 该 id 在onMenusClickedListener方法中使用
+		title: browser.i18n.getMessage("translateLinkMenu"), // 翻译选中的链接
 		contexts: ["link"],
 	});
 }
@@ -117,7 +117,7 @@ function translateText(tab) {
 }
 
 /**
- * 翻译整个页面
+ * 【可废弃，使用不到】译整个页面
  * 使用Google翻译服务翻译当前页面，并根据设置决定在当前标签页还是新标签页中打开
  * @param {Object} info - 包含有关上下文菜单事件的信息，包括页面URL
  * @param {Object} tab - 包含有关当前标签页的信息
@@ -144,7 +144,7 @@ function translatePage(info, tab) {
 }
 
 /**
- * 翻译链接指向的页面
+ * 【可废弃，使用不到】翻译链接指向的页面
  * 使用Google翻译服务翻译链接指向的页面，并在新标签页中打开
  * @param {Object} info - 包含有关上下文菜单事件的信息，包括链接URL
  * @param {Object} tab - 包含有关当前标签页的信息

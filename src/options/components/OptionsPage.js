@@ -28,6 +28,7 @@ const optionsPageClassName =
 	"optionsPage" + (rtlLanguage ? " rtl-language" : "");
 
 export default () => {
+	console.log("OptionsPage render");
 	setupTheme();
 	return (
 		<HashRouter hashType='noslash'>

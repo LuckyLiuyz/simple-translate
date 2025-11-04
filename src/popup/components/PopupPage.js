@@ -87,6 +87,7 @@ export default class PopupPage extends Component {
 	 * 初始化弹出页面
 	 */
 	init = async () => {
+		console.log("PopupPage init()");
 		// 初始化设置
 		await initSettings();
 		overWriteLogLevel();

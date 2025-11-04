@@ -19,6 +19,7 @@ export const translateText = async (
 ) => {
 	console.log("translateText()", text, targetLang);
 	let result = {};
+	debugger;
 	const isOpenCustomMode = getSettings("isOpenCustomMode");
 	// 自定义模式下的翻译, 优先级高于翻译引擎
 	if (isOpenCustomMode) {

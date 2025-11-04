@@ -16,15 +16,49 @@ import {
  * 根据浏览器界面语言设置默认的目标语言和第二目标语言
  * @returns {Object} 包含targetLang和secondTargetLang的对象
  */
-const getDefaultLangs = () => {
-	const uiLang = browser.i18n.getUILanguage();
+const getDefaultLangs = async () => {
+	const uiLang = browser.i18n.getUILanguage(); // 获取浏览器 UI 的语言。它返回一个表示浏览器界面语言的字符串，例如 "en" 表示英语，"zh-CN" 表示简体中文等。
+
+	// 如果获取到locale cookie，则使用其值作为UI语言
+	const loginLocale = getLocalCookie("loginLocale"); // 获取BIP系统的登录语言
+	console.log("lyz loginLocale=", loginLocale);
+
 	const langOptions = generateLangOptions("google");
 
 	const shouldUseUiLang = langOptions.some((lang) => lang.value == uiLang);
-	const targetLang = shouldUseUiLang ? uiLang : "en";
+	let targetLang = shouldUseUiLang ? uiLang : "en";
+	// 优先使用BIP系统的登录语言，否则使用浏览器UI语言
+	if (loginLocale) {
+		targetLang = loginLocale;
+	}
 	const secondTargetLang = targetLang === "en" ? "ja" : "en";
 
 	return {targetLang, secondTargetLang};
+};
+
+/**
+ * 获取本地Cookie
+ * 尝试获取浏览器的locale cookie，但需要确保在合适的上下文中执行
+ * @param {string} name - cookie的名称
+ * @returns {string} cookie的值，如果没有找到则返回空字符串
+ */
+const getLocalCookie = (name) => {
+	// 尝试获取locale cookie，但需要确保在合适的上下文中执行
+	let cookieString = document.cookie;
+	console.log("lyz cookieString=", cookieString);
+
+	// 创建空对象存储cookie键值对
+	const cookies = {};
+	// 按分号和空格分割cookie字符串
+	const items = cookieString.split("; ");
+	// 遍历每个键值对
+	items.forEach((item) => {
+		// 按等号分割键和值
+		const [key, value] = item.split("=");
+		// 将键值对存储到对象中，如果值为空字符串或undefined，则存储为空字符串
+		cookies[key] = value || "";
+	});
+	return cookies[name] || "";
 };
 
 /**
