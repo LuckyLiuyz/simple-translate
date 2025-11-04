@@ -10,8 +10,15 @@
 
 1. git clone https://github.com/LuckyLiuyz/simple-translate.git -- 克隆项目
 2. Run `npm install` -- 安装依赖
-3. Run `npm run watch-dev` -- 启动开发环境
+3. Run `npm run watch-dev` -- 启动开发环境，构建的临时产物放到 dev 目录下，方便开发者模式下高效调试。
 4. Run `npm run build` -- 构建打包插件，产物可以在浏览器开发者模式下调试。
+
+### 本地调试
+
+1. 运行 `npm run watch-dev`
+2. 在 Chrome 中打开开发者模式，选择本地 /dev/chrome 目录下的文件，正常加载扩展程序
+3. 修改 popup 下的内容，实时编译后会，点击扩展图标即可实时生效
+4. 修改 content 下的内容，实时编译后需要重新加载扩展程序才可以生效
 
 ### 在 Chrome 中加载扩展程序
 

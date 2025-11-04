@@ -11,6 +11,11 @@ import {
 	BG_COLOR_DARK,
 } from "./defaultColors";
 
+/**
+ * 获取默认语言设置
+ * 根据浏览器界面语言设置默认的目标语言和第二目标语言
+ * @returns {Object} 包含targetLang和secondTargetLang的对象
+ */
 const getDefaultLangs = () => {
 	const uiLang = browser.i18n.getUILanguage();
 	const langOptions = generateLangOptions("google");
@@ -22,6 +27,10 @@ const getDefaultLangs = () => {
 	return {targetLang, secondTargetLang};
 };
 
+/**
+ * 当切换翻译API时更新语言设置
+ * 处理不同翻译服务之间的语言代码映射
+ */
 const updateLangsWhenChangeTranslationApi = () => {
 	const translationApi = getSettings("translationApi");
 	const targetLang = getSettings("targetLang");
@@ -30,6 +39,12 @@ const updateLangsWhenChangeTranslationApi = () => {
 		(option) => option.value
 	);
 
+	/**
+	 * 语言代码映射函数
+	 * 处理不同翻译服务之间的语言代码差异
+	 * @param {string} lang - 原始语言代码
+	 * @returns {string} 映射后的语言代码
+	 */
 	const mappingLang = (lang) => {
 		switch (lang) {
 			case "en":
@@ -52,26 +67,35 @@ const updateLangsWhenChangeTranslationApi = () => {
 		}
 	};
 
+	// 如果当前目标语言不被新的翻译API支持，则进行映射
 	if (!currentLangs.includes(targetLang))
 		setSettings("targetLang", mappingLang(targetLang));
 	if (!currentLangs.includes(secondTargetLang))
 		setSettings("secondTargetLang", mappingLang(secondTargetLang));
 };
 
+// 获取默认语言设置
 const defaultLangs = getDefaultLangs();
-// MV2ではwindow.matchMediaでシステムテーマを取得していたが、MV3では簡単に実装できないためオミットする
+// MV2中使用window.matchMedia获取系统主题，但在MV3中难以实现，因此省略
 const getTheme = () => "light";
 
+/**
+ * 默认设置配置
+ * 定义了插件的所有设置项，包括分类、类型、默认值等
+ */
 export default [
 	{
+		// 通用设置分类
 		category: "generalLabel",
 		elements: [
 			{
+				// 翻译API设置
 				id: "translationApi",
 				title: "translationApiLabel",
 				captions: [],
 				type: "none",
 				default: "google",
+				// 子元素：Google和DeepL API选项
 				childElements: [
 					{
 						id: "translationApi",
@@ -79,12 +103,14 @@ export default [
 						captions: ["googleApiCaptionLabel"],
 						type: "radio",
 						value: "google",
+						// 切换API时更新语言设置
 						handleChange: () => updateLangsWhenChangeTranslationApi(),
 					},
 					{
 						id: "translationApi",
 						title: "deeplApiLabel",
 						captions: ["deeplApiCaptionLabel"],
+						// DeepL API额外说明链接
 						extraCaption: React.createElement(
 							"p",
 							{className: "caption"},
@@ -99,14 +125,17 @@ export default [
 						),
 						type: "radio",
 						value: "deepl",
+						// 切换API时更新语言设置
 						handleChange: () => updateLangsWhenChangeTranslationApi(),
 					},
 					{
+						// DeepL计划设置（免费版/专业版）
 						id: "deeplPlan",
 						title: "deeplPlanLabel",
 						captions: ["deeplPlanCaptionLabel"],
 						type: "select",
 						default: "deeplFree",
+						// 仅当选择DeepL API时显示
 						shouldShow: () => getSettings("translationApi") === "deepl",
 						hr: true,
 						options: [
@@ -121,53 +150,64 @@ export default [
 						],
 					},
 					{
+						// DeepL认证密钥设置
 						id: "deeplAuthKey",
 						title: "deeplAuthKeyLabel",
 						captions: ["deeplAuthKeyCaptionLabel"],
 						type: "text",
 						default: "",
 						placeholder: "00000000-0000-0000-0000-00000000000000:fx",
+						// 仅当选择DeepL API时显示
 						shouldShow: () => getSettings("translationApi") === "deepl",
 					},
 				],
 			},
 			{
+				// 目标语言设置
 				id: "targetLang",
 				title: "targetLangLabel",
 				captions: ["targetLangCaptionLabel"],
 				type: "select",
 				default: defaultLangs.targetLang,
+				// 动态生成语言选项
 				options: () => generateLangOptions(getSettings("translationApi")),
 				useRawOptionName: true,
 			},
 			{
+				// 第二目标语言设置
 				id: "secondTargetLang",
 				title: "secondTargetLangLabel",
 				captions: ["secondTargetLangCaptionLabel"],
 				type: "select",
 				default: defaultLangs.secondTargetLang,
+				// 动态生成语言选项
 				options: () => generateLangOptions(getSettings("translationApi")),
 				useRawOptionName: true,
 			},
 			{
+				// 是否显示候选翻译设置
 				id: "ifShowCandidate",
 				title: "ifShowCandidateLabel",
 				captions: ["ifShowCandidateCaptionLabel"],
 				type: "checkbox",
 				default: true,
+				// 仅当使用Google翻译时显示
 				shouldShow: () => getSettings("translationApi") === "google",
 			},
 		],
 	},
 	{
+		// 网页翻译设置分类
 		category: "webPageLabel",
 		elements: [
 			{
+				// 文本选择时的行为设置
 				id: "whenSelectText",
 				title: "whenSelectTextLabel",
 				captions: [],
 				type: "none",
 				default: "showButton",
+				// 子元素：不同行为选项
 				childElements: [
 					{
 						id: "whenSelectText",
@@ -191,6 +231,7 @@ export default [
 						value: "dontShowButton",
 					},
 					{
+						// 是否检查语言设置
 						id: "ifCheckLang",
 						title: "ifCheckLangLabel",
 						captions: ["ifCheckLangCaptionLabel"],
@@ -201,11 +242,13 @@ export default [
 				],
 			},
 			{
+				// 仅在按下修饰键时翻译设置
 				id: "ifOnlyTranslateWhenModifierKeyPressed",
 				title: "ifOnlyTranslateWhenModifierKeyPressedLabel",
 				captions: ["ifOnlyTranslateWhenModifierKeyPressedCaptionLabel"],
 				type: "checkbox",
 				default: false,
+				// 子元素：修饰键选择
 				childElements: [
 					{
 						id: "modifierKey",
@@ -235,6 +278,7 @@ export default [
 				],
 			},
 			{
+				// 是否在页面上切换第二语言设置
 				id: "ifChangeSecondLangOnPage",
 				title: "ifChangeSecondLangLabel",
 				captions: ["ifChangeSecondLangOnPageCaptionLabel"],
@@ -242,11 +286,14 @@ export default [
 				default: false,
 			},
 			{
+				// 禁用翻译设置组
 				title: "disableTranslationLabel",
 				captions: [],
 				type: "none",
+				// 子元素：各种禁用翻译的选项
 				childElements: [
 					{
+						// 在文本字段中禁用翻译
 						id: "isDisabledInTextFields",
 						title: "isDisabledInTextFieldsLabel",
 						captions: ["isDisabledInTextFieldsCaptionLabel"],
@@ -254,6 +301,7 @@ export default [
 						default: false,
 					},
 					{
+						// 在代码元素中禁用翻译
 						id: "isDisabledInCodeElement",
 						title: "isDisabledInCodeElementLabel",
 						captions: ["isDisabledInCodeElementCaptionLabel"],
@@ -261,6 +309,7 @@ export default [
 						default: false,
 					},
 					{
+						// 忽略的文档语言
 						id: "ignoredDocumentLang",
 						title: "ignoredDocumentLangLabel",
 						captions: ["ignoredDocumentLangCaptionLabel"],
@@ -269,6 +318,7 @@ export default [
 						placeholder: "en, ru, zh",
 					},
 					{
+						// 禁用翻译的URL列表
 						id: "disableUrlList",
 						title: "disableUrlListLabel",
 						captions: ["disableUrlListCaptionLabel"],
@@ -281,9 +331,11 @@ export default [
 		],
 	},
 	{
+		// 工具栏设置分类
 		category: "toolbarLabel",
 		elements: [
 			{
+				// 等待时间设置
 				id: "waitTime",
 				title: "waitTimeLabel",
 				captions: ["waitTimeCaptionLabel", "waitTime2CaptionLabel"],
@@ -293,6 +345,7 @@ export default [
 				default: 500,
 			},
 			{
+				// 是否切换第二语言设置
 				id: "ifChangeSecondLang",
 				title: "ifChangeSecondLangLabel",
 				captions: ["ifChangeSecondLangCaptionLabel"],
@@ -302,9 +355,11 @@ export default [
 		],
 	},
 	{
+		// 菜单设置分类
 		category: "menuLabel",
 		elements: [
 			{
+				// 是否显示菜单设置
 				id: "ifShowMenu",
 				title: "ifShowMenuLabel",
 				captions: ["ifShowMenuCaptionLabel"],
@@ -314,9 +369,11 @@ export default [
 		],
 	},
 	{
+		// 页面翻译设置分类
 		category: "pageTranslationLabel",
 		elements: [
 			{
+				// 页面翻译打开方式设置
 				id: "pageTranslationOpenTo",
 				title: "pageTranslationOpenToLabel",
 				captions: ["pageTranslationOpenToCaptionLabel"],
@@ -336,9 +393,11 @@ export default [
 		],
 	},
 	{
+		// 样式设置分类
 		category: "styleLabel",
 		elements: [
 			{
+				// 主题设置
 				id: "theme",
 				title: "themeLabel",
 				captions: ["themeCaptionLabel"],
@@ -360,11 +419,14 @@ export default [
 				],
 			},
 			{
+				// 按钮样式设置组
 				title: "buttonStyleLabel",
 				captions: ["buttonStyleCaptionLabel"],
 				type: "none",
+				// 子元素：按钮相关设置
 				childElements: [
 					{
+						// 按钮大小设置
 						id: "buttonSize",
 						title: "buttonSizeLabel",
 						captions: [],
@@ -374,6 +436,7 @@ export default [
 						default: 22,
 					},
 					{
+						// 按钮方向设置
 						id: "buttonDirection",
 						title: "displayDirectionLabel",
 						captions: [],
@@ -415,6 +478,7 @@ export default [
 						],
 					},
 					{
+						// 按钮偏移量设置
 						id: "buttonOffset",
 						title: "positionOffsetLabel",
 						captions: [],
@@ -425,11 +489,14 @@ export default [
 				],
 			},
 			{
+				// 面板样式设置组
 				title: "panelStyleLabel",
 				captions: ["panelStyleCaptionLabel"],
 				type: "none",
+				// 子元素：面板相关设置
 				childElements: [
 					{
+						// 面板宽度设置
 						id: "width",
 						title: "widthLabel",
 						captions: [],
@@ -439,6 +506,7 @@ export default [
 						default: 300,
 					},
 					{
+						// 面板高度设置
 						id: "height",
 						title: "heightLabel",
 						captions: [],
@@ -448,6 +516,7 @@ export default [
 						default: 200,
 					},
 					{
+						// 字体大小设置
 						id: "fontSize",
 						title: "fontSizeLabel",
 						captions: [],
@@ -457,6 +526,7 @@ export default [
 						default: 13,
 					},
 					{
+						// 面板参考点设置
 						id: "panelReferencePoint",
 						title: "referencePointLabel",
 						captions: [],
@@ -478,6 +548,7 @@ export default [
 						],
 					},
 					{
+						// 面板方向设置
 						id: "panelDirection",
 						title: "displayDirectionLabel",
 						captions: [],
@@ -519,6 +590,7 @@ export default [
 						],
 					},
 					{
+						// 面板偏移量设置
 						id: "panelOffset",
 						title: "positionOffsetLabel",
 						captions: [],
@@ -527,6 +599,7 @@ export default [
 						placeholder: 10,
 					},
 					{
+						// 是否覆盖颜色设置
 						id: "isOverrideColors",
 						title: "isOverrideColorsLabel",
 						captions: [],
@@ -534,6 +607,7 @@ export default [
 						default: false,
 					},
 					{
+						// 结果字体颜色设置
 						id: "resultFontColor",
 						title: "resultFontColorLabel",
 						captions: [],
@@ -544,6 +618,7 @@ export default [
 								: RESULT_FONT_COLOR_DARK,
 					},
 					{
+						// 候选词字体颜色设置
 						id: "candidateFontColor",
 						title: "candidateFontColorLabel",
 						captions: [],
@@ -554,6 +629,7 @@ export default [
 								: CANDIDATE_FONT_COLOR_DARK,
 					},
 					{
+						// 背景颜色设置
 						id: "bgColor",
 						title: "bgColorLabel",
 						captions: [],
@@ -565,9 +641,11 @@ export default [
 		],
 	},
 	{
+		// 其他设置分类
 		category: "otherLabel",
 		elements: [
 			{
+				// 更新时是否显示选项页面设置
 				id: "isShowOptionsPageWhenUpdated",
 				title: "isShowOptionsPageWhenUpdatedLabel",
 				captions: ["isShowOptionsPageWhenUpdatedCaptionLabel"],
@@ -575,6 +653,7 @@ export default [
 				default: true,
 			},
 			{
+				// 是否启用调试模式设置
 				id: "isDebugMode",
 				title: "isDebugModeLabel",
 				captions: ["isDebugModeCaptionLabel"],
@@ -582,6 +661,7 @@ export default [
 				default: false,
 			},
 			{
+				// 是否启用自定义模式设置
 				id: "isOpenCustomMode",
 				title: "isOpenCustomModeLabel",
 				captions: ["isOpenCustomModeCaptionLabel"],
@@ -589,6 +669,7 @@ export default [
 				default: false,
 			},
 			{
+				// 是否自动翻译设置
 				id: "isAutoTranslate",
 				title: "isAutoTranslateLabel",
 				captions: ["isAutoTranslateCaptionLabel"],
