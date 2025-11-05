@@ -1,10 +1,10 @@
+import "../styles/ResultArea.scss";
 import React from "react";
+import CopyButton from "./CopyButton";
+import openUrl from "src/common/openUrl";
+import ListenButton from "./ListenButton";
 import browser from "webextension-polyfill";
 import {getSettings} from "src/settings/settings";
-import openUrl from "src/common/openUrl";
-import CopyButton from "./CopyButton";
-import ListenButton from "./ListenButton";
-import "../styles/ResultArea.scss";
 
 /**
  * 分割文本中的换行符

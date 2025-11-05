@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import browser from "webextension-polyfill";
+import CategoryContainer from "./CategoryContainer";
+import defaultSettings from "src/settings/defaultSettings";
 import {updateLogLevel, overWriteLogLevel} from "src/common/log";
 import {
 	initSettings,
@@ -9,9 +11,6 @@ import {
 	importSettings,
 	handleSettingsChange,
 } from "src/settings/settings";
-import defaultSettings from "src/settings/defaultSettings";
-import CategoryContainer from "./CategoryContainer";
-
 export default class SettingsPage extends Component {
 	constructor(props) {
 		super(props);

@@ -1,8 +1,8 @@
-import React, {Component} from "react";
-import ReactDOM from "react-dom";
-import browser from "webextension-polyfill";
-import ListenButton from "./ListenButton";
 import "../styles/InputArea.scss";
+import ReactDOM from "react-dom";
+import React, {Component} from "react";
+import ListenButton from "./ListenButton";
+import browser from "webextension-polyfill";
 
 /**
  * 输入区域组件

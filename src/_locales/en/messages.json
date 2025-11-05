@@ -1,15 +1,9 @@
 {
   "extName": {
-    "message": "Simple Translate"
+    "message": "BIP Translate"
   },
   "extDescription": {
     "message": "Quickly translate selected or typed text on web pages. Supports Google Translate and DeepL API."
-  },
-  "donateWithPaypalLabel": {
-    "message": "Donate with PayPal"
-  },
-  "donateLabel": {
-    "message": "Donate"
   },
   "enableOnThisPage": {
     "message": "Enable translation on this page"
@@ -71,17 +65,8 @@
   "howToUseDeeplLabel": {
     "message": "How to register DeepL API"
   },
-  "deeplPlanLabel": {
-    "message": "DeepL API plan"
-  },
   "deeplPlanCaptionLabel": {
     "message": "Select the DeepL API plan for which you registered."
-  },
-  "deeplFreeLabel": {
-    "message": "DeepL API Free"
-  },
-  "deeplProLabel": {
-    "message": "DeepL API Pro"
   },
   "deeplAuthKeyLabel": {
     "message": "Authentication key"
@@ -333,7 +318,7 @@
     "message": "Display option page when updating"
   },
   "isShowOptionsPageWhenUpdatedCaptionLabel": {
-    "message": "Display the options page when Simple Translate is updated. You can know the update contents quickly."
+    "message": "Display the options page when BIP Translate is updated. You can know the update contents quickly."
   },
   "isDebugModeLabel": {
     "message": "Enable debug mode"
@@ -342,10 +327,10 @@
     "message": "When debug mode is enabled, the log is output to the debugger."
   },
   "isOpenCustomModeLabel": {
-    "message": "是否启用自定义模式"
+    "message": "是否启用自定义优先模式"
   },
   "isOpenCustomModeCaptionLabel": {
-    "message": "启用自定义模式后, 部分中文词条将优先使用自定义的翻译，不会调用谷歌翻译或DeepL翻译。"
+    "message": "启用自定义优先模式后, 部分中文词条将优先使用自定义的翻译，不会调用谷歌翻译或DeepL翻译。"
   },
   "isAutoTranslateLabel": {
     "message": "是否启用自动翻译"
@@ -420,43 +405,13 @@
     "message": "Enable translation on web pages"
   },
   "additionalPermissionCaptionLabel": {
-    "message": "Additional permissions are required to use Simple Translate on web pages."
+    "message": "Additional permissions are required to use BIP Translate on web pages."
   },
   "enableLabel": {
     "message": "Enable"
   },
-  "backersLabel": {
-    "message": "Backers"
-  },
   "licenseLabel": {
     "message": "License"
-  },
-  "donationLabel": {
-    "message": "Please make a donation"
-  },
-  "donationCaptionLabel": {
-    "message": "Thank you for using Simple Translate.<br>Your support will be a big encouragement, as I continue to develop the add-on.<br>If you like Simple Translate, I would be pleased if you could consider donating."
-  },
-  "amazonTitleLabel": {
-    "message": "amazon.co.jp eGift Cards"
-  },
-  "sponsorsLabel": {
-    "message": "Sponsors"
-  },
-  "addonPageLabel": {
-    "message": "Add-on page"
-  },
-  "extensionPageLabel": {
-    "message": "Extension page"
-  },
-  "privacyPolicyLabel": {
-    "message": "Privacy policy"
-  },
-  "amazonUrl": {
-    "message": "https://www.amazon.co.jp/dp/B004N3APGO?language=en_US"
-  },
-  "addonUrl": {
-    "message": "https://addons.mozilla.org/en-US/firefox/addon/simple-translate/?src=optionpage"
   },
   "networkError": {
     "message": "Error: Check network connection status."
@@ -478,6 +433,9 @@
   },
   "translateLinkMenu": {
     "message": "Translate selected link"
+  },
+  "manualTranslateMenu": {
+    "message": "手动翻译"
   },
   "openPopupDescription": {
     "message": "Open toolbar popup"

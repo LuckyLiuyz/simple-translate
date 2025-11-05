@@ -38,7 +38,7 @@ export const onMenusShownListener = (info, tab) => {
 };
 
 /**
- * 菜单项被点击时的监听器
+ * 右键菜单项被点击时的监听器
  * 根据点击的菜单项ID执行相应的翻译操作
  * @param {Object} info - 包含有关已点击上下文菜单的信息
  * @param {Object} tab - 包含有关当前标签页的信息
@@ -55,6 +55,9 @@ export const onMenusClickedListener = (info, tab) => {
 			break;
 		case "translateLink":
 			translateLink(info, tab);
+			break;
+		case "manualTranslate": // 手动翻译
+			openManualTranslate(tab, info);
 			break;
 	}
 };
@@ -74,6 +77,13 @@ function createMenus() {
 			contexts: ["tab"],
 		});
 	}
+
+	// 创建手动翻译菜单项，仅在选择文本时显示
+	browser.contextMenus.create({
+		id: "manualTranslate",
+		title: browser.i18n.getMessage("manualTranslateMenu"), // 手动翻译
+		contexts: ["selection"],
+	});
 
 	// 创建页面翻译菜单项，在所有上下文中显示
 	browser.contextMenus.create({
@@ -113,6 +123,19 @@ function removeMenus() {
 function translateText(tab) {
 	browser.tabs.sendMessage(tab.id, {
 		message: "translateSelectedText",
+	});
+}
+
+/**
+ * 发送消息给content script 打开手动翻译的窗口
+ * 向内容脚本发送消息以显示手动翻译浮层
+ * @param {Object} tab - 当前标签页对象
+ * @param {Object} info - 上下文菜单信息
+ */
+function openManualTranslate(tab, info) {
+	browser.tabs.sendMessage(tab.id, {
+		message: "openManualTranslate",
+		text: info.selectionText,
 	});
 }
 

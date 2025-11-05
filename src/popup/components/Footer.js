@@ -1,8 +1,6 @@
+import "../styles/Footer.scss";
 import React, {Component} from "react";
 import browser from "webextension-polyfill";
-import openUrl from "src/common/openUrl";
-import "../styles/Footer.scss";
-import {getSettings} from "../../settings/settings";
 
 /**
  * 弹出页面底部组件

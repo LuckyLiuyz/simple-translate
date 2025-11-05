@@ -1,10 +1,10 @@
 import React from "react";
-import browser from "webextension-polyfill";
-import openUrl from "src/common/openUrl";
-import SettingsIcon from "../icons/settings.svg";
-import Toggle from "react-toggle";
-import "react-toggle/style.css";
 import "../styles/Header.scss";
+import "react-toggle/style.css";
+import Toggle from "react-toggle";
+import openUrl from "src/common/openUrl";
+import browser from "webextension-polyfill";
+import SettingsIcon from "../icons/settings.svg";
 
 /**
  * 打开设置页面
@@ -36,7 +36,7 @@ const getToggleButtonTitle = (isEnabled) => {
  */
 export default (props) => (
 	<div id='header'>
-		<div className='title'>Simple Translate</div>
+		<div className='title'>BIP Translate</div>
 		<div className='rightButtons'>
 			<div
 				className='toggleButton'

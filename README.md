@@ -1,4 +1,4 @@
-# Simple Translate 浏览器翻译插件
+# BIP Translate 浏览器翻译插件
 
 #### 快速翻译网页上选定或键入的文本。支持谷歌翻译和 DeepL API。
 
@@ -39,4 +39,4 @@
 
 ## Privacy Policy
 
-[Privacy Policy](https://simple-translate.sienori.com/privacy-policy) of Simple Translate
+[Privacy Policy](https://simple-translate.sienori.com/privacy-policy) of BIP Translate

@@ -11,7 +11,7 @@ const SideBar = (props) => (
 	<div className='sideBar'>
 		<div className='titleContainer'>
 			<img src='/icons/64.png' className='logo' />
-			<span className='logoTitle'>Simple Translate</span>
+			<span className='logoTitle'>BIP Translate</span>
 		</div>
 		<ul>
 			<li

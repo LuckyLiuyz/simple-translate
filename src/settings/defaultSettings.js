@@ -43,22 +43,26 @@ const getDefaultLangs = async () => {
  * @returns {string} cookie的值，如果没有找到则返回空字符串
  */
 const getLocalCookie = (name) => {
-	// 尝试获取locale cookie，但需要确保在合适的上下文中执行
-	let cookieString = document.cookie;
-	console.log("lyz cookieString=", cookieString);
+	try {
+		// 尝试获取locale cookie，但需要确保在合适的上下文中执行
+		let cookieString = document.cookie;
+		console.log("lyz cookieString=", cookieString);
 
-	// 创建空对象存储cookie键值对
-	const cookies = {};
-	// 按分号和空格分割cookie字符串
-	const items = cookieString.split("; ");
-	// 遍历每个键值对
-	items.forEach((item) => {
-		// 按等号分割键和值
-		const [key, value] = item.split("=");
-		// 将键值对存储到对象中，如果值为空字符串或undefined，则存储为空字符串
-		cookies[key] = value || "";
-	});
-	return cookies[name] || "";
+		// 创建空对象存储cookie键值对
+		const cookies = {};
+		// 按分号和空格分割cookie字符串
+		const items = cookieString.split("; ");
+		// 遍历每个键值对
+		items.forEach((item) => {
+			// 按等号分割键和值
+			const [key, value] = item.split("=");
+			// 将键值对存储到对象中，如果值为空字符串或undefined，则存储为空字符串
+			cookies[key] = value || "";
+		});
+		return cookies[name] || "";
+	} catch (error) {
+		return "";
+	}
 };
 
 /**
@@ -161,27 +165,6 @@ export default [
 						value: "deepl",
 						// 切换API时更新语言设置
 						handleChange: () => updateLangsWhenChangeTranslationApi(),
-					},
-					{
-						// DeepL计划设置（免费版/专业版）
-						id: "deeplPlan",
-						title: "deeplPlanLabel",
-						captions: ["deeplPlanCaptionLabel"],
-						type: "select",
-						default: "deeplFree",
-						// 仅当选择DeepL API时显示
-						shouldShow: () => getSettings("translationApi") === "deepl",
-						hr: true,
-						options: [
-							{
-								name: "deeplFreeLabel",
-								value: "deeplFree",
-							},
-							{
-								name: "deeplProLabel",
-								value: "deeplPro",
-							},
-						],
 					},
 					{
 						// DeepL认证密钥设置

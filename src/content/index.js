@@ -6,9 +6,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import browser from "webextension-polyfill";
-import PageTranslator from "../popup/components/PageTranslator";
+import PageTranslator from "./components/PageTranslator";
 import {updateLogLevel, overWriteLogLevel} from "src/common/log";
 import TranslateContainer from "./components/TranslateContainer";
+import ManualTranslatePortal from "./components/ManualTranslatePortal";
 import {
 	initSettings,
 	getSettings,
@@ -17,6 +18,9 @@ import {
 
 // 页面翻译器实例，用于整页翻译功能
 let pageTranslator = null;
+
+// 手动翻译Portal实例
+let manualTranslatePortal = null;
 
 /**
  * 初始化函数，设置各种事件监听器和初始配置
@@ -277,6 +281,18 @@ const handleKeyDown = (e) => {
 	// ESC键按下时移除翻译容器
 	if (e.key === "Escape") {
 		removeTranslatecontainer();
+		// 同时关闭手动翻译Portal
+		if (manualTranslatePortal) {
+			// 卸载Portal组件
+			const container = document.getElementById(
+				"simple-translate-manual-portal"
+			);
+			if (container) {
+				ReactDOM.unmountComponentAtNode(container);
+				container.parentNode.removeChild(container);
+			}
+			manualTranslatePortal = null;
+		}
 	}
 };
 
@@ -332,7 +348,7 @@ const handleMessage = async (request) => {
 		}
 
 		case "translateAllPage": {
-			// 处理页面翻译演示消息
+			// 处理翻译当前页面的消息
 			console.log("Received translateAllPage message");
 
 			// 创建PageTranslator实例
@@ -352,6 +368,13 @@ const handleMessage = async (request) => {
 					console.error("Page translation demo failed:", error);
 				});
 
+			break;
+		}
+
+		case "openManualTranslate": {
+			// 处理手动翻译的消息，打开手动翻译弹窗
+			if (!isEnabled) return empty;
+			openManualTranslatePortal(request.text);
 			break;
 		}
 
@@ -465,5 +488,38 @@ const showTranslateContainer = (
 			shouldTranslate={shouldTranslate}
 		/>,
 		document.getElementById("simple-translate")
+	);
+};
+
+/**
+ * 右键菜单中“手动翻译”按钮点击后，打开手动翻译弹窗
+ * @param {string} text - 需要手动翻译的文本
+ */
+const openManualTranslatePortal = (text) => {
+	// 如果已经存在Portal，则先关闭它
+	if (manualTranslatePortal) {
+		const container = document.getElementById("simple-translate-manual-portal");
+		if (container) {
+			ReactDOM.unmountComponentAtNode(container);
+			container.parentNode.removeChild(container);
+		}
+	}
+
+	// 创建新的Portal容器
+	const container = document.createElement("div");
+	container.id = "simple-translate-manual-portal-container";
+	document.body.appendChild(container);
+
+	const onClose = () => {
+		if (container) {
+			ReactDOM.unmountComponentAtNode(container);
+			container.parentNode.removeChild(container);
+		}
+		manualTranslatePortal = null;
+	};
+
+	manualTranslatePortal = ReactDOM.render(
+		<ManualTranslatePortal text={text} onClose={onClose} />,
+		container
 	);
 };

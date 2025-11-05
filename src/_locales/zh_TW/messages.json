@@ -1,15 +1,9 @@
 {
   "extName": {
-    "message": "Simple Translate"
+    "message": "BIP Translate"
   },
   "extDescription": {
     "message": "快速翻譯在網頁上選取或輸入的文字。支援 Google 翻譯與 DeepL API。"
-  },
-  "donateWithPaypalLabel": {
-    "message": "透過 PayPal 贊助"
-  },
-  "donateLabel": {
-    "message": "贊助"
   },
   "enableOnThisPage": {
     "message": "在此頁面上啟用翻譯"
@@ -71,17 +65,8 @@
   "howToUseDeeplLabel": {
     "message": "如何註冊 DeepL API"
   },
-  "deeplPlanLabel": {
-    "message": "DeepL API 方案"
-  },
   "deeplPlanCaptionLabel": {
     "message": "選取您註冊的 DeepL API 方案。"
-  },
-  "deeplFreeLabel": {
-    "message": "DeepL API Free"
-  },
-  "deeplProLabel": {
-    "message": "DeepL API Pro"
   },
   "deeplAuthKeyLabel": {
     "message": "授權金鑰"
@@ -333,7 +318,7 @@
     "message": "更新時顯示選項頁面"
   },
   "isShowOptionsPageWhenUpdatedCaptionLabel": {
-    "message": "更新 Simple Translate 時顯示選項頁面。讓您可以快速瞭解更新內容。"
+    "message": "更新 BIP Translate 時顯示選項頁面。讓您可以快速瞭解更新內容。"
   },
   "isDebugModeLabel": {
     "message": "啟用偵錯模式"
@@ -342,10 +327,10 @@
     "message": "啟用偵錯模式後，記錄檔將輸出至偵錯工具。"
   },
   "isOpenCustomModeLabel": {
-    "message": "是否启用自定义模式"
+    "message": "是否启用自定义优先模式"
   },
   "isOpenCustomModeCaptionLabel": {
-    "message": "启用自定义模式后, 部分中文词条将优先使用自定义的翻译，不会调用谷歌翻译或DeepL翻译。"
+    "message": "启用自定义优先模式后, 部分中文词条将优先使用自定义的翻译，不会调用谷歌翻译或DeepL翻译。"
   },
   "isAutoTranslateLabel": {
     "message": "是否启用自动翻译"
@@ -420,43 +405,13 @@
     "message": "啟用在網頁上翻譯"
   },
   "additionalPermissionCaptionLabel": {
-    "message": "在網頁上使用 Simple Translate 需要額外權限。"
+    "message": "在網頁上使用 BIP Translate 需要額外權限。"
   },
   "enableLabel": {
     "message": "啟用"
   },
-  "backersLabel": {
-    "message": "贊助者清單"
-  },
   "licenseLabel": {
     "message": "授權條款"
-  },
-  "donationLabel": {
-    "message": "請贊助我吧！"
-  },
-  "donationCaptionLabel": {
-    "message": "感謝您使用 Simple Translate。<br>您的支持是我繼續開發這個附加元件的動力。<br>如果您喜歡 Simple Translate，希望您能夠贊助我。"
-  },
-  "amazonTitleLabel": {
-    "message": "贊助我 amazon 電子禮品卡"
-  },
-  "sponsorsLabel": {
-    "message": "贊助者"
-  },
-  "addonPageLabel": {
-    "message": "AMO 附加元件頁面"
-  },
-  "extensionPageLabel": {
-    "message": "Chrome 應用程式商店頁面"
-  },
-  "privacyPolicyLabel": {
-    "message": "隱私權政策"
-  },
-  "amazonUrl": {
-    "message": "https://www.amazon.co.jp/dp/B004N3APGO?language=zh_CN"
-  },
-  "addonUrl": {
-    "message": "https://addons.mozilla.org/zh-TW/firefox/addon/simple-translate/?src=optionpage"
   },
   "networkError": {
     "message": "錯誤：請檢查您的網路連線狀態。"
@@ -478,6 +433,9 @@
   },
   "translateLinkMenu": {
     "message": "翻譯選取鏈結"
+  },
+  "manualTranslateMenu": {
+    "message": "手动翻译"
   },
   "openPopupDescription": {
     "message": "開啟工具列彈出式視窗"

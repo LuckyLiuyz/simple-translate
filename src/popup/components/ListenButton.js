@@ -1,8 +1,8 @@
-import React from "react";
-import browser from "webextension-polyfill";
-import log from "loglevel";
-import SpeakerIcon from "../icons/speaker.svg";
 import "../styles/ListenButton.scss";
+import React from "react";
+import log from "loglevel";
+import browser from "webextension-polyfill";
+import SpeakerIcon from "../icons/speaker.svg";
 
 const logDir = "popup/AudioButton";
 

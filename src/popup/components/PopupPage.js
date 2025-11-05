@@ -1,15 +1,14 @@
-import React, {Component} from "react";
-import browser from "webextension-polyfill";
+import "../styles/PopupPage.scss";
 import log from "loglevel";
-import {initSettings, getSettings, setSettings} from "src/settings/settings";
-import {updateLogLevel, overWriteLogLevel} from "src/common/log";
-import generateLangOptions from "src/common/generateLangOptions";
 import Header from "./Header";
+import Footer from "./Footer";
 import InputArea from "./InputArea";
 import ResultArea from "./ResultArea";
-import Footer from "./Footer";
-import "../styles/PopupPage.scss";
-import {getBackgroundColor} from "../../settings/defaultColors";
+import React, {Component} from "react";
+import browser from "webextension-polyfill";
+import {updateLogLevel, overWriteLogLevel} from "src/common/log";
+import generateLangOptions from "src/common/generateLangOptions";
+import {initSettings, getSettings, setSettings} from "src/settings/settings";
 
 const logDir = "popup/PopupPage";
 
